@@ -18,8 +18,23 @@ pipeline {
 	}
 
 	post {
-	   always {
-		junit testResults: 'logs/unitreport.xml'
-	   }
-	}
-}
+        always {
+            junit 'tests/junit-report.xml'
+            archiveArtifacts artifacts: '**/junit-report.xml', allowEmptyArchive: true
+        }
+
+        success {
+            echo 'Build and tests succeeded!'
+            // Add more post-success steps here, such as notifications
+        }
+
+        failure {
+            echo 'Build or tests failed.'
+            // Add more post-failure steps here, such as notifications
+        }
+
+        cleanup {
+            echo 'Cleaning up...'
+            // Add cleanup steps here
+        }
+    }
