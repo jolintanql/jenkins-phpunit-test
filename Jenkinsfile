@@ -19,11 +19,8 @@ pipeline {
 
 	post {
 		always {
-			// Ensure the JUnit step points to the correct report file path
-			junit 'logs/unitreport.xml'
-			// Archive the correct report file path
-			archiveArtifacts artifacts: 'logs/unitreport.xml', allowEmptyArchive: true
-		}
+		
+			junit 'logs/unitreport.xml'		}
 		success {
 			echo 'Build and tests succeeded!'
 		}
